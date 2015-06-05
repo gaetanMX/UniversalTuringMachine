@@ -2,7 +2,11 @@
 public class PlusOneTuringMachine  {
 	public static void main(String [] args)  {
 		TuringMachineUniverselle t = getMT1();
+		t.write_ruban(new int[]{1}, 0); // 110 - 1011
+		t.print_rubanMTP();
+
 		t.exec();
+		t.print_rubanMTP();
 
 	}
 	 public static TuringMachineUniverselle getMT1() {

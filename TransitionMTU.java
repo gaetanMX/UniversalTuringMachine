@@ -269,7 +269,7 @@ public class TransitionMTU {
 		Transition allerTete3_gauche = Dieu.newTransition(null, cCOPIE, mGAUCHE);
 		Transition comptete3_gauche = Dieu.newTransition(null, cCOPIE, mSURPLACE);
 		Transition nettoyer_gauche = Dieu.newTransition(null, cCOPIE, mDROITE);
-		Transition allerFTe_gauche = Dieu.newTransition(null, cCOPIE, mGAUCHE);
+		Transition allerFTe_gauche = Dieu.newTransition(null, cCOPIE, mDROITE);
 
 		
 		IN.definition(cIe, lireIOdroite, cIe, mGAUCHE); // -- mDROITE -> mGAUCHE
@@ -311,7 +311,7 @@ public class TransitionMTU {
 		nettoyer_gauche.definition(cZ, nettoyer_gauche, c0, mDROITE);
 		nettoyer_gauche.definition(cSe, allerFTe_gauche, cSe, mDROITE);
 
-		allerFTe_gauche.definition(cFTe, OUT, cFTe, mSURPLACE);
+		allerFTe_gauche.definition(cFTe, OUT, cFTe, mGAUCHE);
 
 		
 /*-------- droite */
@@ -351,7 +351,7 @@ public class TransitionMTU {
 		nettoyer_droite.definition(cZ, nettoyer_droite, c0, mDROITE);
 		nettoyer_droite.definition(cSe, allerFTe_droite, cSe, mGAUCHE);
 
-		allerFTe_droite.definition(cFTe, OUT, cFTe, mSURPLACE);
+		allerFTe_droite.definition(cFTe, OUT, cFTe, mGAUCHE);
 		
 	}
 	static void probleme4(TableDeTransition Dieu, Transition IN, Transition OUT) {
@@ -610,5 +610,27 @@ public class TransitionMTU {
     	 */
     	return Dieu.toTAB();
      }
+    public static void main(String [] args) {
+    	TableDeTransition Dieu = new TableDeTransition();
 
+    	Transition pb1 = Dieu.newTransition();
+    	pb1.setComment("etat initial");
+    	Transition pb2 = Dieu.newTransition(null, cCOPIE, mGAUCHE);
+    	Transition pb3 = Dieu.newTransition(null, cCOPIE, mDROITE);
+    	Transition pb4 = Dieu.newTransition();
+    	Transition pb5 = Dieu.newTransition(null, cCOPIE, mGAUCHE);
+    	Transition pb6 = Dieu.newTransition(null, cCOPIE, mDROITE);
+    	
+    	probleme1(Dieu, pb1, pb2);
+    	probleme2(Dieu, pb2, pb3);
+    	probleme3(Dieu, pb3, pb4);
+    	probleme4(Dieu, pb4, pb5);
+    	probleme5(Dieu, pb5, pb6);
+    	probleme6(Dieu, pb6, pb1);
+    	
+    	/*System.out.print(Dieu.toString());
+    	 *
+    	 */
+    	System.out.println(Dieu.toString());
+     }
 }

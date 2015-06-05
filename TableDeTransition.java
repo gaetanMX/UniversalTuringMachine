@@ -36,24 +36,26 @@ public class TableDeTransition {
 	}
 	
 	public String toString() {
-		String result = "new int[][][]{";
+		String result = "131\n36\n";//new int[][][]{";
 		ListIterator<Transition> iter = transitions.listIterator(0);
 		/*for (int e=0; iter.hasNext(); e++) iter.next().setEtat(e);*/
 		for (int e=0; iter.hasNext(); e++) {
 			Transition t = iter.next();
-			//if (t.getComment() == null) result += "/* Etat "+ e +" */\n";
-			//else result += "/* Etat "+ e +": "+t.getComment()+" */\n";
-			if (e != 0) result += ",";
-			result += "{";
+			if (t.getComment() == null) result += "/* Etat "+ e +" */\n";
+			else result += "/* Etat "+ e +": "+t.getComment()+" */\n";
+			//if (e != 0) result += ",";
+			//result += "{";
 			for (int s=0; s < Definition.alpha; s++) {
 				Definition d = t.getDefinition(s);
 				//result += "t["+ e +"]["+ s +"] = new int[]{"+ transitions.indexOf(d.getTransition()) +","+ d.getNvSymbole() +","+ d.getMouvement() +"};\n";
-				if (s != 0) result += ",\n";
-				result += "{"+transitions.indexOf(d.getTransition()) +","+ d.getNvSymbole() +","+ d.getMouvement()+"}";
+				//if (s != 0) result += ",\n";
+				//result += "{"+transitions.indexOf(d.getTransition()) +","+ d.getNvSymbole() +","+ d.getMouvement()+"}";
+				result += transitions.indexOf(d.getTransition()) +"#"+ d.getNvSymbole() +"#"+ d.getMouvement()+"\n";
 			}
-			result += "}\n";
+			//result += "}\n";
 		}
-		return result+"}";
+		//return result+"}";
+		return result;
 	}
 	
 	public int[][][] toTAB() {
